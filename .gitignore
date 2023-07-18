@@ -1,0 +1,9 @@
+wandb
+coreml
+pretrain
+**/__pycache__
+pretrain
+ignore
+*.zip
+checkpoints
+trt
