@@ -5,8 +5,8 @@ Segmentation on ADE20K is implemented based on [MMSegmentation](https://github.c
 ## Models
 | Model | mIoU | Latency | Ckpt | Log |
 |:---------------|:----:|:---:|:--:|:--:|
-| RepViT-M2 |   40.6   |     4.9ms    |   [M2](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m2_ade20k.pth)   | [M2](./logs/repvit_m2_ade20k.json) |
-| RepViT-M3 |   42.8   |     5.9ms    |   [M3](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m3_ade20k.pth)   | [M3](./logs/repvit_m3_ade20k.json) |
+| RepViT-M2 |   40.6   |     4.9ms    |   [M2](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m2_ade20k.pth)   | [M2](./logs/repvit_m2_ade20k.json) |
+| RepViT-M3 |   42.8   |     5.9ms    |   [M3](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m3_ade20k.pth)   | [M3](./logs/repvit_m3_ade20k.json) |
 
 The backbone latency is measured with image crops of 512x512 on iPhone 12 by Core ML Tools.
 

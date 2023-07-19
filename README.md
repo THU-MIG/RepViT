@@ -15,7 +15,7 @@ Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
   <summary>
   <font size="+1">Abstract</font>
   </summary>
-Recently, lightweight Vision Transformers (ViTs) demonstrate superior performance and lower latency compared with lightweight Convolutional Neural Networks (CNNs) on resource-constrained mobile devices. This improvement is usually attributed to the multi-head self-attention module, which enables the model to learn global representations. However, the architectural disparities between lightweight ViTs and lightweight CNNs have not been adequately examined. In this study, we revisit the efficient design of lightweight CNNs and emphasize their potential for mobile devices. We incrementally enhance the mobile-friendliness of a standard lightweight CNN, specifically MobileNetV3, by integrating the efficient architectural choices of lightweight ViTs. To this end, we present a new family of pure lightweight CNNs, namely RepViT. Extensive experiments show that RepViT outperforms existing state-of-the-art lightweight ViTs and exhibits favorable latency in various vision tasks. On ImageNet, RepViT achieves over 80\% top-1 accuracy with nearly 1ms latency on an iPhone 12, which is the first time for a lightweight model, to the best of our knowledge. Our largest model, RepViT-M3, obtains 81.4\% accuracy with only 1.3ms latency.
+Recently, lightweight Vision Transformers (ViTs) demonstrate superior performance and lower latency compared with lightweight Convolutional Neural Networks (CNNs) on resource-constrained mobile devices. This improvement is usually attributed to the multi-head self-attention module, which enables the model to learn global representations. However, the architectural disparities between lightweight ViTs and lightweight CNNs have not been adequately examined. In this study, we revisit the efficient design of lightweight CNNs and emphasize their potential for mobile devices. We incrementally enhance the mobile-friendliness of a standard lightweight CNN, specifically MobileNetV3, by integrating the efficient architectural choices of lightweight ViTs. This ends up with a new family of pure lightweight CNNs, namely RepViT. Extensive experiments show that RepViT outperforms existing state-of-the-art lightweight ViTs and exhibits favorable latency in various vision tasks. On ImageNet, RepViT achieves over 80\% top-1 accuracy with nearly 1ms latency on an iPhone 12, which is the first time for a lightweight model, to the best of our knowledge. Our largest model, RepViT-M3, obtains 81.4\% accuracy with only 1.3ms latency.
 </details>
 
 <br>
@@ -26,9 +26,9 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 
 | Model | Top-1 (300)| #params | MACs | Latency | Ckpt | Core ML | Log |
 |:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|
-| RepViT-M1 |   78.5   |     5.1M    |   0.8G   |      0.9ms     |  [M1](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m1_distill_300.pth)    |   [M1](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m1_224.mlmodel)  | [M1](./logs/repvit_m1_train.log) |
-| RepViT-M2 |   80.6   |     8.8M    |   1.4G   |      1.1ms     |  [M2](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m2_distill_300.pth)    |   [M2](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m2_224.mlmodel)  | [M2](./logs/repvit_m2_train.log) |
-| RepViT-M3 |   81.4   |     10.1M    |   1.9G   |      1.3ms     |  [M3](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m3_distill_300.pth)    |   [M3](https://github.com/jameslahm/RepViT/releases/download/untagged-75eb9e1fea235b938f50/repvit_m3_224.mlmodel)  | [M3](./logs/repvit_m3_train.log) |
+| RepViT-M1 |   78.5   |     5.1M    |   0.8G   |      0.9ms     |  [M1](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m1_distill_300.pth)    |   [M1](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m1_224.mlmodel)  | [M1](./logs/repvit_m1_train.log) |
+| RepViT-M2 |   80.6   |     8.2M    |   1.3G   |      1.1ms     |  [M2](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m2_distill_300.pth)    |   [M2](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m2_224.mlmodel)  | [M2](./logs/repvit_m2_train.log) |
+| RepViT-M3 |   81.4   |     10.1M    |   1.9G   |      1.3ms     |  [M3](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m3_distill_300.pth)    |   [M3](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m3_224.mlmodel)  | [M3](./logs/repvit_m3_train.log) |
 
 Tips: Convert a training-time RepViT into the inference-time structure
 ```
@@ -102,7 +102,14 @@ Thanks for the great implementations!
 
 ## Citation
 
-If our code or models help your work, please cite our papers:
+If our code or models help your work, please cite our paper:
 ```BibTeX
-
+@misc{wang2023repvit,
+      title={RepViT: Revisiting Mobile CNN From ViT Perspective}, 
+      author={Ao Wang and Hui Chen and Zijia Lin and Hengjun Pu and Guiguang Ding},
+      year={2023},
+      eprint={2307.09283},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
