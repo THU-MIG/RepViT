@@ -21,6 +21,7 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 <br/>
 
 **UPDATES** 🔥
+- 2023/09/28: RepViT-M0.9/1.0/1.1/1.5/2.3 models have been released.
 - 2023/07/27: RepViT models have been integrated into timm. See https://github.com/huggingface/pytorch-image-models/pull/1876.
 
 <br/>
@@ -31,11 +32,11 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 
 | Model | Top-1 (300 / 450)| #params | MACs | Latency | Ckpt | Core ML | Log |
 |:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|
-| M0.9 |   78.7 / 79.1  |     5.1M    |   0.8G   |      0.9ms     |  [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m0_9_distill_300e.txt) / [450e](./logs/repvit_m0_9_distill_450e.txt) |
-| M1.0 |   80.0 / 80.3   |     6.8M    |   1.1G   |      1.0ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_0_distill_300e.txt) / [450e](./logs/repvit_m1_0_distill_450e.txt) |
-| M1.1 |   80.7 / 81.1   |     8.2M    |   1.3G   |      1.1ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_1_distill_300e.txt) / [450e](./logs/repvit_m1_1_distill_450e.txt) |
-| M1.5 |   82.3 / 82.5   |     14.0M    |   2.3G   |      1.5ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_5_distill_300e.txt) / [450e](./logs/repvit_m1_5_distill_450e.txt) |
-| M2.3 |   83.3 / 83.7   |     22.9M    |   4.5G   |      2.3ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m2_3_distill_300e.txt) / [450e](./logs/repvit_m2_3_distill_450e.txt) |
+| M0.9 |   78.7 / 79.1  |     5.1M    |   0.8G   |      0.9ms     |  [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_9_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m0_9_distill_300e.txt) / [450e](./logs/repvit_m0_9_distill_450e.txt) |
+| M1.0 |   80.0 / 80.3   |     6.8M    |   1.1G   |      1.0ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_0_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_0_distill_300e.txt) / [450e](./logs/repvit_m1_0_distill_450e.txt) |
+| M1.1 |   80.7 / 81.2   |     8.2M    |   1.3G   |      1.1ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_1_distill_300e.txt) / [450e](./logs/repvit_m1_1_distill_450e.txt) |
+| M1.5 |   82.3 / 82.5   |     14.0M    |   2.3G   |      1.5ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m1_5_distill_300e.txt) / [450e](./logs/repvit_m1_5_distill_450e.txt) |
+| M2.3 |   83.3 / 83.7   |     22.9M    |   4.5G   |      2.3ms     | [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distill_300e.pth) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distill_450e.pth)    |   [300e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distiall_300e_224.mlmodel) / [450e](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_distiall_450e_224.mlmodel)  | [300e](./logs/repvit_m2_3_distill_300e.txt) / [450e](./logs/repvit_m2_3_distill_450e.txt) |
 
 
 Tips: Convert a training-time RepViT into the inference-time structure

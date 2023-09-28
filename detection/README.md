@@ -5,9 +5,9 @@ Detection and instance segmentation on MS COCO 2017 is implemented based on [MMD
 ## Models
 | Model                   | $AP^b$ | $AP_{50}^b$ | $AP_{75}^b$ | $AP^m$ | $AP_{50}^m$ | $AP_{75}^m$ | Latency | Ckpt | Log |
 |:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| RepViT-M1_1 | 39.8  |  61.9   | 43.5  |    37.2    |  58.8      |  40.1        |     4.9ms    |   [M1_1]()   | [M1_1](./logs/repvit_m1_1_coco.json) |
-| RepViT-M1_5 | 41.6   | 63.2   | 45.3  | 38.6   | 60.5        | 41.5         |     6.4ms    |   [M1_5]()   | [M1_5](./logs/repvit_m1_5_coco.json) |
-| RepViT-M2_3 | 44.6   | 66.1        | 48.8        | 40.8   | 63.6        | 43.9  |     9.9ms    |   [M2_3]()   | [M2_3](./logs/repvit_m2_3_coco.json) |
+| RepViT-M1_1 | 39.8  |  61.9   | 43.5  |    37.2    |  58.8      |  40.1        |     4.9ms    |   [M1_1](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_coco.pth)   | [M1_1](./logs/repvit_m1_1_coco.json) |
+| RepViT-M1_5 | 41.6   | 63.2   | 45.3  | 38.6   | 60.5        | 41.5         |     6.4ms    |   [M1_5](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_coco.pth)   | [M1_5](./logs/repvit_m1_5_coco.json) |
+| RepViT-M2_3 | 44.6   | 66.1        | 48.8        | 40.8   | 63.6        | 43.9  |     9.9ms    |   [M2_3](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_coco.pth)   | [M2_3](./logs/repvit_m2_3_coco.json) |
 
 ## Installation
 
