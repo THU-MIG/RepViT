@@ -7,11 +7,11 @@ _base_ = [
 model = dict(
     type='EncoderDecoder',
     backbone=dict(
-        type='repvit_m2',
+        type='repvit_m1_1',
         style='pytorch',
         init_cfg=dict(
             type='Pretrained',
-            checkpoint='pretrain/repvit_m2_distill_300.pth',
+            checkpoint='pretrain/repvit_m1_1_distill_300e.pth',
         ),
         out_indices = [3,7,21,24]
     ),

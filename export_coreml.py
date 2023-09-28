@@ -11,7 +11,7 @@ from argparse import ArgumentParser
 
 parser = ArgumentParser()
 
-parser.add_argument('--model', default='repvit_m1', type=str)
+parser.add_argument('--model', default='repvit_m1_1', type=str)
 parser.add_argument('--resolution', default=224, type=int)
 parser.add_argument('--ckpt', default=None, type=str)
 

@@ -5,8 +5,9 @@ Segmentation on ADE20K is implemented based on [MMSegmentation](https://github.c
 ## Models
 | Model | mIoU | Latency | Ckpt | Log |
 |:---------------|:----:|:---:|:--:|:--:|
-| RepViT-M2 |   40.6   |     4.9ms    |   [M2](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m2_ade20k.pth)   | [M2](./logs/repvit_m2_ade20k.json) |
-| RepViT-M3 |   42.8   |     5.9ms    |   [M3](https://github.com/jameslahm/RepViT/releases/download/v1.0/repvit_m3_ade20k.pth)   | [M3](./logs/repvit_m3_ade20k.json) |
+| RepViT-M1_1 |   40.6   |     4.9ms    |   [M1_1]()   | [M1_1](./logs/repvit_m1_1_ade20k.json) |
+| RepViT-M1_5 |   43.6   |     6.4ms    |   [M1_5]()   | [M1_5](./logs/repvit_m1_5_ade20k.json) |
+| RepViT-M2_3 |   46.1   |     9.9ms    |   [M2_3]()   | [M2_3](./logs/repvit_m2_3_ade20k.json) |
 
 The backbone latency is measured with image crops of 512x512 on iPhone 12 by Core ML Tools.
 
@@ -50,7 +51,7 @@ We provide a multi-GPU testing script, specify config file, checkpoint, and numb
 For example, to test RepViT-M1 on ADE20K on an 8-GPU machine, 
 
 ```
-./tools/dist_test.sh configs/sem_fpn/fpn_repvit_m2_ade20k_40k.py path/to/repvit_m2_ade20k.pth 8 --eval mIoU
+./tools/dist_test.sh configs/sem_fpn/fpn_repvit_m1_1_ade20k_40k.py path/to/repvit_m1_1_ade20k.pth 8 --eval mIoU
 ```
 
 ## Training 
@@ -58,6 +59,6 @@ Download ImageNet-1K pretrained weights into `./pretrain`
 
 We provide PyTorch distributed data parallel (DDP) training script `dist_train.sh`, for example, to train EfficientFormer-L1 on an 8-GPU machine: 
 ```
-./tools/dist_train.sh configs/sem_fpn/fpn_repvit_m2_ade20k_40k.py 8
+./tools/dist_train.sh configs/sem_fpn/fpn_repvit_m1_1_ade20k_40k.py 8
 ```
 Tips: specify configs and #GPUs!

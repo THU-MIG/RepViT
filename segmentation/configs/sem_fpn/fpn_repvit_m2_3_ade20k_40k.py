@@ -7,15 +7,15 @@ _base_ = [
 model = dict(
     type='EncoderDecoder',
     backbone=dict(
-        type='repvit_m3',
+        type='repvit_m2_3',
         style='pytorch',
         init_cfg=dict(
             type='Pretrained',
-            checkpoint='pretrain/repvit_m3_distill_300.pth',
+            checkpoint='pretrain/repvit_m2_3_distill_450e.pth',
         ),
-        out_indices=[5,11,31,34]
+        out_indices=[7, 15, 51, 54]
     ),
-    neck=dict(in_channels=[64, 128, 256, 512]),
+    neck=dict(in_channels=[80, 160, 320, 640]),
     decode_head=dict(num_classes=150))
 
 gpu_multiples = 2  # we use 8 gpu instead of 4 in mmsegmentation, so lr*2 and max_iters/2

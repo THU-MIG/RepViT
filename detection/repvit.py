@@ -7,10 +7,6 @@ from mmdet.models.builder import BACKBONES
 from torch.nn.modules.batchnorm import _BatchNorm
 from mmcv.runner import _load_checkpoint
 
-
-__all__ = ['repvit_m1']
-
-
 def _make_divisible(v, divisor, min_value=None):
     """
     This function is taken from the original tf repo.
@@ -95,16 +91,17 @@ class RepVGGDW(torch.nn.Module):
     def __init__(self, ed) -> None:
         super().__init__()
         self.conv = Conv2d_BN(ed, ed, 3, 1, 1, groups=ed)
-        self.conv1 = Conv2d_BN(ed, ed, 1, 1, 0, groups=ed)
+        self.conv1 = torch.nn.Conv2d(ed, ed, 1, 1, 0, groups=ed)
         self.dim = ed
+        self.bn = torch.nn.BatchNorm2d(ed)
     
     def forward(self, x):
-        return self.conv(x) + self.conv1(x) + x
+        return self.bn((self.conv(x) + self.conv1(x)) + x)
     
     @torch.no_grad()
     def fuse(self):
         conv = self.conv.fuse()
-        conv1 = self.conv1.fuse()
+        conv1 = self.conv1
         
         conv_w = conv.weight
         conv_b = conv.bias
@@ -120,6 +117,14 @@ class RepVGGDW(torch.nn.Module):
 
         conv.weight.data.copy_(final_conv_w)
         conv.bias.data.copy_(final_conv_b)
+
+        bn = self.bn
+        w = bn.weight / (bn.running_var + bn.eps)**0.5
+        w = conv.weight * w[:, None, None, None]
+        b = bn.bias + (conv.bias - bn.running_mean) * bn.weight / \
+            (bn.running_var + bn.eps)**0.5
+        conv.weight.data.copy_(w)
+        conv.bias.data.copy_(b)
         return conv
 
 
@@ -267,43 +272,7 @@ class RepViT(nn.Module):
 from timm.models import register_model
 
 @BACKBONES.register_module()
-def repvit_m1(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
-    """
-    Constructs a MobileNetV3-Large model
-    """
-    cfgs = [
-        # k, t, c, SE, HS, s 
-        [3,   2,  48, 1, 0, 1],
-        [3,   2,  48, 0, 0, 1],
-        [3,   2,  48, 0, 0, 1],
-        [3,   2,  96, 0, 0, 2],
-        [3,   2,  96, 1, 0, 1],
-        [3,   2,  96, 0, 0, 1],
-        [3,   2,  96, 0, 0, 1],
-        [3,   2,  192, 0, 1, 2],
-        [3,   2,  192, 1, 1, 1],
-        [3,   2,  192, 0, 1, 1],
-        [3,   2,  192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 1, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 192, 0, 1, 1],
-        [3,   2, 384, 0, 1, 2],
-        [3,   2, 384, 1, 1, 1],
-        [3,   2, 384, 0, 1, 1]
-    ]
-    return RepViT(cfgs, init_cfg=init_cfg, pretrained=pretrained, distillation=distillation, out_indices=out_indices)
-
-@BACKBONES.register_module()
-def repvit_m2(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
+def repvit_m1_1(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
     """
     Constructs a MobileNetV3-Large model
     """
@@ -336,8 +305,9 @@ def repvit_m2(pretrained=False, num_classes = 1000, distillation=False, init_cfg
     ]
     return RepViT(cfgs, init_cfg=init_cfg, pretrained=pretrained, distillation=distillation, out_indices=out_indices)
 
+
 @BACKBONES.register_module()
-def repvit_m3(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
+def repvit_m1_5(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
     """
     Constructs a MobileNetV3-Large model
     """
@@ -373,9 +343,87 @@ def repvit_m3(pretrained=False, num_classes = 1000, distillation=False, init_cfg
         [3,   2, 256, 0, 1, 1],
         [3,   2, 256, 1, 1, 1],
         [3,   2, 256, 0, 1, 1],
+        [3,   2, 256, 1, 1, 1],
+        [3,   2, 256, 0, 1, 1],
+        [3,   2, 256, 1, 1, 1],
+        [3,   2, 256, 0, 1, 1],
+        [3,   2, 256, 1, 1, 1],
+        [3,   2, 256, 0, 1, 1],
         [3,   2, 256, 0, 1, 1],
         [3,   2, 512, 0, 1, 2],
         [3,   2, 512, 1, 1, 1],
+        [3,   2, 512, 0, 1, 1],
+        [3,   2, 512, 1, 1, 1],
         [3,   2, 512, 0, 1, 1]
     ]
+    return RepViT(cfgs, init_cfg=init_cfg, pretrained=pretrained, distillation=distillation, out_indices=out_indices)
+
+
+
+@BACKBONES.register_module()
+def repvit_m2_3(pretrained=False, num_classes = 1000, distillation=False, init_cfg=None, out_indices=[], **kwargs):
+    """
+    Constructs a MobileNetV3-Large model
+    """
+    cfgs = [
+        # k, t, c, SE, HS, s 
+        [3,   2,  80, 1, 0, 1],
+        [3,   2,  80, 0, 0, 1],
+        [3,   2,  80, 1, 0, 1],
+        [3,   2,  80, 0, 0, 1],
+        [3,   2,  80, 1, 0, 1],
+        [3,   2,  80, 0, 0, 1],
+        [3,   2,  80, 0, 0, 1],
+        [3,   2,  160, 0, 0, 2],
+        [3,   2,  160, 1, 0, 1],
+        [3,   2,  160, 0, 0, 1],
+        [3,   2,  160, 1, 0, 1],
+        [3,   2,  160, 0, 0, 1],
+        [3,   2,  160, 1, 0, 1],
+        [3,   2,  160, 0, 0, 1],
+        [3,   2,  160, 0, 0, 1],
+        [3,   2,  320, 0, 1, 2],
+        [3,   2,  320, 1, 1, 1],
+        [3,   2,  320, 0, 1, 1],
+        [3,   2,  320, 1, 1, 1],
+        [3,   2,  320, 0, 1, 1],
+        [3,   2,  320, 1, 1, 1],
+        [3,   2,  320, 0, 1, 1],
+        [3,   2,  320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 1, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        # [3,   2, 320, 1, 1, 1],
+        # [3,   2, 320, 0, 1, 1],
+        [3,   2, 320, 0, 1, 1],
+        [3,   2, 640, 0, 1, 2],
+        [3,   2, 640, 1, 1, 1],
+        [3,   2, 640, 0, 1, 1],
+        # [3,   2, 640, 1, 1, 1],
+        # [3,   2, 640, 0, 1, 1]
+    ]    
     return RepViT(cfgs, init_cfg=init_cfg, pretrained=pretrained, distillation=distillation, out_indices=out_indices)

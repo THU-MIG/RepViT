@@ -7,10 +7,10 @@ _base_ = [
 # optimizer
 model = dict(
     backbone=dict(
-        type='repvit_m2',
+        type='repvit_m1_1',
         init_cfg=dict(
             type='Pretrained',
-            checkpoint='pretrain/repvit_m2_distill_300.pth',
+            checkpoint='pretrain/repvit_m1_1_distill_300e.pth',
         ),
         out_indices = [2,6,20,24]
     ),

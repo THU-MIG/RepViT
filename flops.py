@@ -9,7 +9,7 @@ T0 = 5
 T1 = 10
 
 for n, batch_size, resolution in [
-    ('repvit_m2', 1024, 224),
+    ('repvit_m0_9', 1024, 224),
 ]:
     inputs = torch.randn(1, 3, resolution,
                             resolution)
