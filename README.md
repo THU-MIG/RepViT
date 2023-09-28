@@ -31,11 +31,11 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 
 | Model | Top-1 (300 / 450)| #params | MACs | Latency | Ckpt | Core ML | Log |
 |:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|
-| RepViT-M0.9 |   78.7 / 79.1  |     5.1M    |   0.8G   |      0.9ms     |  [M0.9-300e]() / [M0.9-450e]()    |   [M0.9-300e]() / [M0.9-450e]()  | [M0.9-300e](./logs/repvit_m0_9_distill_300e.txt) / [M0.9-450e](./logs/repvit_m0_9_distill_450e.txt) |
-| RepViT-M1.0 |   80.0 / 80.3   |     6.8M    |   1.1G   |      1.0ms     | [M1.0-300e]() / [M1.0-450e]()    |   [M1.0-300e]() / [M1.0-450e]()  | [M1.0-300e](./logs/repvit_m1_0_distill_300e.txt) / [M1.0-450e](./logs/repvit_m1_0_distill_450e.txt) |
-| RepViT-M1.1 |   80.7 / 81.1   |     8.2M    |   1.3G   |      1.1ms     | [M1.1-300e]() / [M1.1-450e]()    |   [M1.1-300e]() / [M1.1-450e]()  | [M1.1-300e](./logs/repvit_m1_1_distill_300e.txt) / [M1.1-450e](./logs/repvit_m1_1_distill_450e.txt) |
-| RepViT-M1.5 |   82.3 / 82.5   |     14.0M    |   2.3G   |      1.5ms     | [M1.5-300e]() / [M1.5-450e]()    |   [M1.5-300e]() / [M1.5-450e]()  | [M1.5-300e](./logs/repvit_m1_5_distill_300e.txt) / [M1.5-450e](./logs/repvit_m1_5_distill_450e.txt) |
-| RepViT-M2.3 |   83.3 / 83.7   |     22.9M    |   4.5G   |      2.3ms     | [M2.3-300e]() / [M2.3-450e]()    |   [M2.3-300e]() / [M2.3-450e]()  | [M2.3-300e](./logs/repvit_m2_3_distill_300e.txt) / [M2.3-450e](./logs/repvit_m2_3_distill_450e.txt) |
+| M0.9 |   78.7 / 79.1  |     5.1M    |   0.8G   |      0.9ms     |  [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m0_9_distill_300e.txt) / [450e](./logs/repvit_m0_9_distill_450e.txt) |
+| M1.0 |   80.0 / 80.3   |     6.8M    |   1.1G   |      1.0ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_0_distill_300e.txt) / [450e](./logs/repvit_m1_0_distill_450e.txt) |
+| M1.1 |   80.7 / 81.1   |     8.2M    |   1.3G   |      1.1ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_1_distill_300e.txt) / [450e](./logs/repvit_m1_1_distill_450e.txt) |
+| M1.5 |   82.3 / 82.5   |     14.0M    |   2.3G   |      1.5ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m1_5_distill_300e.txt) / [450e](./logs/repvit_m1_5_distill_450e.txt) |
+| M2.3 |   83.3 / 83.7   |     22.9M    |   4.5G   |      2.3ms     | [300e]() / [450e]()    |   [300e]() / [450e]()  | [300e](./logs/repvit_m2_3_distill_300e.txt) / [450e](./logs/repvit_m2_3_distill_450e.txt) |
 
 
 Tips: Convert a training-time RepViT into the inference-time structure
