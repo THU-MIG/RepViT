@@ -51,7 +51,7 @@ utils.replace_batchnorm(model)
 ## Latency Measurement 
 
 The latency reported in RepViT for iPhone 12 (iOS 16) uses the benchmark tool from [XCode 14](https://developer.apple.com/videos/play/wwdc2022/10027/).
-For example, here is a latency measurement of RepViT-M1:
+For example, here is a latency measurement of RepViT-M0.9:
 
 ![](./figures/repvit_m0_9_latency.png)
 
@@ -84,7 +84,7 @@ Download and extract ImageNet train and val images from http://image-net.org/. T
 ```
 
 ### Training
-To train RepViT-M1 on an 8-GPU machine:
+To train RepViT-M0.9 on an 8-GPU machine:
 
 ```
 python -m torch.distributed.launch --nproc_per_node=8 --master_port 12346 --use_env main.py --model repvit_m0_9 --data-path ~/imagenet --dist-eval
@@ -92,7 +92,7 @@ python -m torch.distributed.launch --nproc_per_node=8 --master_port 12346 --use_
 Tips: specify your data path and model name! 
 
 ### Testing 
-For example, to test RepViT-M1:
+For example, to test RepViT-M0.9:
 ```
 python main.py --eval --model repvit_m0_9 --resume pretrain/repvit_m0_9_distill_300e.pth --data-path ~/imagenet
 ```
