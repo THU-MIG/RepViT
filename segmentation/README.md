@@ -5,9 +5,9 @@ Segmentation on ADE20K is implemented based on [MMSegmentation](https://github.c
 ## Models
 | Model | mIoU | Latency | Ckpt | Log |
 |:---------------|:----:|:---:|:--:|:--:|
-| RepViT-M1_1 |   40.6   |     4.9ms    |   [M1_1](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_ade20k.pth)   | [M1_1](./logs/repvit_m1_1_ade20k.json) |
-| RepViT-M1_5 |   43.6   |     6.4ms    |   [M1_5](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_ade20k.pth)   | [M1_5](./logs/repvit_m1_5_ade20k.json) |
-| RepViT-M2_3 |   46.1   |     9.9ms    |   [M2_3](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_ade20k.pth)   | [M2_3](./logs/repvit_m2_3_ade20k.json) |
+| RepViT-M1.1 |   40.6   |     4.9ms    |   [M1.1](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_ade20k.pth)   | [M1.1](./logs/repvit_m1_1_ade20k.json) |
+| RepViT-M1.5 |   43.6   |     6.4ms    |   [M1.5](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_ade20k.pth)   | [M1.5](./logs/repvit_m1_5_ade20k.json) |
+| RepViT-M2.3 |   46.1   |     9.9ms    |   [M2.3](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_ade20k.pth)   | [M2.3](./logs/repvit_m2_3_ade20k.json) |
 
 The backbone latency is measured with image crops of 512x512 on iPhone 12 by Core ML Tools.
 
@@ -48,7 +48,7 @@ We provide a multi-GPU testing script, specify config file, checkpoint, and numb
 ./tools/dist_test.sh config_file path/to/checkpoint #GPUs --eval mIoU
 ```
 
-For example, to test RepViT-M1 on ADE20K on an 8-GPU machine, 
+For example, to test RepViT-M1.1 on ADE20K on an 8-GPU machine, 
 
 ```
 ./tools/dist_test.sh configs/sem_fpn/fpn_repvit_m1_1_ade20k_40k.py path/to/repvit_m1_1_ade20k.pth 8 --eval mIoU
@@ -57,7 +57,7 @@ For example, to test RepViT-M1 on ADE20K on an 8-GPU machine,
 ## Training 
 Download ImageNet-1K pretrained weights into `./pretrain` 
 
-We provide PyTorch distributed data parallel (DDP) training script `dist_train.sh`, for example, to train EfficientFormer-L1 on an 8-GPU machine: 
+We provide PyTorch distributed data parallel (DDP) training script `dist_train.sh`, for example, to train RepViT-M1.1 on an 8-GPU machine: 
 ```
 ./tools/dist_train.sh configs/sem_fpn/fpn_repvit_m1_1_ade20k_40k.py 8
 ```
