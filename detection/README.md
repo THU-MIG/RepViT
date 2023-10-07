@@ -5,9 +5,9 @@ Detection and instance segmentation on MS COCO 2017 is implemented based on [MMD
 ## Models
 | Model                   | $AP^b$ | $AP_{50}^b$ | $AP_{75}^b$ | $AP^m$ | $AP_{50}^m$ | $AP_{75}^m$ | Latency | Ckpt | Log |
 |:---------------|:----:|:---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| RepViT-M1_1 | 39.8  |  61.9   | 43.5  |    37.2    |  58.8      |  40.1        |     4.9ms    |   [M1_1](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_coco.pth)   | [M1_1](./logs/repvit_m1_1_coco.json) |
-| RepViT-M1_5 | 41.6   | 63.2   | 45.3  | 38.6   | 60.5        | 41.5         |     6.4ms    |   [M1_5](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_coco.pth)   | [M1_5](./logs/repvit_m1_5_coco.json) |
-| RepViT-M2_3 | 44.6   | 66.1        | 48.8        | 40.8   | 63.6        | 43.9  |     9.9ms    |   [M2_3](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_coco.pth)   | [M2_3](./logs/repvit_m2_3_coco.json) |
+| RepViT-M1.1 | 39.8  |  61.9   | 43.5  |    37.2    |  58.8      |  40.1        |     4.9ms    |   [M1.1](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_1_coco.pth)   | [M1.1](./logs/repvit_m1_1_coco.json) |
+| RepViT-M1.5 | 41.6   | 63.2   | 45.3  | 38.6   | 60.5        | 41.5         |     6.4ms    |   [M1.5](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m1_5_coco.pth)   | [M1.5](./logs/repvit_m1_5_coco.json) |
+| RepViT-M2.3 | 44.6   | 66.1        | 48.8        | 40.8   | 63.6        | 43.9  |     9.9ms    |   [M2.3](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m2_3_coco.pth)   | [M2.3](./logs/repvit_m2_3_coco.json) |
 
 ## Installation
 
@@ -41,7 +41,7 @@ We provide a multi-GPU testing script, specify config file, checkpoint, and numb
 ./dist_test.sh config_file path/to/checkpoint #GPUs --eval bbox segm
 ```
 
-For example, to test RepViT-M1 on COCO 2017 on an 8-GPU machine, 
+For example, to test RepViT-M1.1 on COCO 2017 on an 8-GPU machine, 
 
 ```
 ./dist_test.sh configs/mask_rcnn_repvit_m1_1_fpn_1x_coco.py path/to/repvit_m1_1_coco.pth 8 --eval bbox segm
@@ -50,7 +50,7 @@ For example, to test RepViT-M1 on COCO 2017 on an 8-GPU machine,
 ## Training
 Download ImageNet-1K pretrained weights into `./pretrain` 
 
-We provide PyTorch distributed data parallel (DDP) training script `dist_train.sh`, for example, to train RepViT-M1 on an 8-GPU machine: 
+We provide PyTorch distributed data parallel (DDP) training script `dist_train.sh`, for example, to train RepViT-M1.1 on an 8-GPU machine: 
 ```
 ./dist_train.sh configs/mask_rcnn_repvit_m1_1_fpn_1x_coco.py 8
 ```
