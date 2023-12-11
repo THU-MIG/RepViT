@@ -10,7 +10,7 @@ Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
   <summary>
   <font size="+1">Abstract</font>
   </summary>
-Segment Anything Model (SAM) has shown impressive zero-shot transfer performance for various computer vision tasks recently. However, its heavy computation costs remain daunting for practical applications. MobileSAM proposes to replace the heavyweight image encoder in SAM with TinyViT by employing distillation, which results in a significant reduction in computational requirements. However, its deployment on resource-constrained mobile devices still encounters challenges due to the substantial memory and computational overhead caused by self-attention mechanisms. Recently, RepViT achieves the state-of-the-art performance and latency trade-off on mobile devices by incorporating efficient architectural designs of ViTs into CNNs. Here, to achieve real-time segmenting anything on mobile devices, following, we replace the heavyweight image encoder in SAM with RepViT model, ending up with the RepViT-SAM model. Extensive experiments show that RepViT-SAM can enjoy significantly better zero-shot transfer capability than MobileSAM, along with nearly $10\times$ faster inference speed. The code and models are available at \url{https://github.com/THU-MIG/RepViT}.
+Segment Anything Model (SAM) has shown impressive zero-shot transfer performance for various computer vision tasks recently. However, its heavy computation costs remain daunting for practical applications. MobileSAM proposes to replace the heavyweight image encoder in SAM with TinyViT by employing distillation, which results in a significant reduction in computational requirements. However, its deployment on resource-constrained mobile devices still encounters challenges due to the substantial memory and computational overhead caused by self-attention mechanisms. Recently, RepViT achieves the state-of-the-art performance and latency trade-off on mobile devices by incorporating efficient architectural designs of ViTs into CNNs. Here, to achieve real-time segmenting anything on mobile devices, following, we replace the heavyweight image encoder in SAM with RepViT model, ending up with the RepViT-SAM model. Extensive experiments show that RepViT-SAM can enjoy significantly better zero-shot transfer capability than MobileSAM, along with nearly $10\times$ faster inference speed.
 </details>
 
 <br/>
@@ -24,7 +24,7 @@ wget https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_sam.pt
 ```
 
 ## Demo
-Our Hugging Face demo is here
+Our Hugging Face demo is [here](https://huggingface.co/spaces/jameslahm/repvit-sam)
 ```
 python app/app.py
 ```
@@ -36,28 +36,22 @@ Please refer to [coreml_example.ipynb](./notebooks/coreml_example.ipynb)
 ## Latency comparisons
 Comparison between RepViT-SAM and others in terms of latency. The latency (ms) is measured with the standard resolution of 1024 $\times$ 1024 on iPhone 12 and Macbook M1 Pro by Core ML Tools. OOM means out of memory.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-c3ow" rowspan="2">Platform</th>
+    <th class="tg-c3ow" rowspan="1">Platform</th>
     <th class="tg-c3ow" colspan="3">Image encoder</th>
-    <th class="tg-c3ow" rowspan="2">Mask decoder</th>
-  </tr>
-  <tr>
-    <th class="tg-c3ow"><b>48.9ms</b></th>
-    <th class="tg-c3ow">OOM</th>
-    <th class="tg-c3ow">OOM</th>
+    <th class="tg-c3ow" rowspan="1">Mask decoder</th>
   </tr>
 </thead>
 <tbody>
+  <tr>
+    <td class="tg-c3ow">iPhone</td>
+    <td class="tg-c3ow"><b>48.9ms</b></td>
+    <td class="tg-c3ow">OOM</td>
+    <td class="tg-c3ow">OOM</td>
+    <td class="tg-c3ow">11.6ms</td>
+  </tr>
   <tr>
     <td class="tg-c3ow">Macbook</td>
     <td class="tg-c3ow"><b>44.8ms</b></td>
@@ -73,14 +67,6 @@ Comparison between RepViT-SAM and others in terms of latency. The latency (ms) i
 
 Comparison results on BSDS500.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -114,9 +100,9 @@ Comparison results on BSDS500.
   </tr>
   <tr>
     <td class="tg-c3ow">RepViT-SAM</td>
-    <td class="tg-c3ow"><u>.764</u></td>
-    <td class="tg-c3ow"><u>.786</u></td>
-    <td class="tg-c3ow"><u>.773</u></td>
+    <td class="tg-c3ow"><ins>.764</ins></td>
+    <td class="tg-c3ow"><ins>.786</ins></td>
+    <td class="tg-c3ow"><ins>.773</ins></td>
   </tr>
 </tbody>
 </table>
@@ -124,14 +110,7 @@ Comparison results on BSDS500.
 
 ## Zero-shot instance segmentation and SegInW
 Comparison results on COCO and SegInW.
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-</style>
+
 <table class="tg">
 <thead>
   <tr>
@@ -141,9 +120,9 @@ Comparison results on COCO and SegInW.
   </tr>
   <tr>
     <th class="tg-c3ow">AP</th>
-    <th class="tg-c3ow">AP$^{S}$</th>
-    <th class="tg-c3ow">AP$^{M}$</th>
-    <th class="tg-c3ow">AP$^{L}$</th>
+    <th class="tg-c3ow">$AP^{S}$</th>
+    <th class="tg-c3ow">$AP^{M}$</th>
+    <th class="tg-c3ow">$AP^{L}$</th>
     <th class="tg-c3ow">Mean AP</th>
   </tr>
 </thead>
@@ -159,7 +138,7 @@ Comparison results on COCO and SegInW.
   <tr>
     <td class="tg-c3ow">ViT-B-SAM</td>
     <td class="tg-c3ow">42.5</td>
-    <td class="tg-c3ow"><u>29.8</u></td>
+    <td class="tg-c3ow"><ins>29.8</ins></td>
     <td class="tg-c3ow">47.0</td>
     <td class="tg-c3ow">56.8</td>
     <td class="tg-c3ow">44.8</td>
@@ -174,25 +153,18 @@ Comparison results on COCO and SegInW.
   </tr>
   <tr>
     <td class="tg-c3ow">RepViT-SAM</td>
-    <td class="tg-c3ow"><u>44.4</u></td>
+    <td class="tg-c3ow"><ins>44.4</ins></td>
     <td class="tg-c3ow">29.1</td>
-    <td class="tg-c3ow"><u>48.6</u></td>
-    <td class="tg-c3ow"><u>61.4</u></td>
-    <td class="tg-c3ow"><u>46.1</u></td>
+    <td class="tg-c3ow"><ins>48.6</ins></td>
+    <td class="tg-c3ow"><ins>61.4</ins></td>
+    <td class="tg-c3ow"><ins>46.1</ins></td>
   </tr>
 </tbody>
 </table>
 
 ## Zero-shot video object/instance segmentation
+Comparison results on DAVIS 2017 and UVO.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -231,24 +203,18 @@ Comparison results on COCO and SegInW.
   </tr>
   <tr>
     <td class="tg-c3ow">RepViT-SAM</td>
-    <td class="tg-c3ow"><u>73.5</u></td>
-    <td class="tg-c3ow"><u>71.0</u></td>
-    <td class="tg-c3ow"><u>76.1</u></td>
-    <td class="tg-c3ow"><u>25.3</u></td>
+    <td class="tg-c3ow"><ins>73.5</ins></td>
+    <td class="tg-c3ow"><ins>71.0</ins></td>
+    <td class="tg-c3ow"><ins>76.1</ins></td>
+    <td class="tg-c3ow"><ins>25.3</ins></td>
   </tr>
 </tbody>
 </table>
 
 ## Zero-shot salient object segmentation
+Comparison results on DUTS.
 ## Zero-shot anomaly detection
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-</style>
+Comparison results on MVTec.
 <table class="tg">
 <thead>
   <tr>
@@ -265,7 +231,7 @@ Comparison results on COCO and SegInW.
   <tr>
     <td class="tg-c3ow">ViT-H-SAM</td>
     <td class="tg-c3ow"><b>0.046</b></td>
-    <td class="tg-c3ow"><u>37.65</u></td>
+    <td class="tg-c3ow"><ins>37.65</ins></td>
   </tr>
   <tr>
     <td class="tg-c3ow">ViT-B-SAM</td>
@@ -279,7 +245,7 @@ Comparison results on COCO and SegInW.
   </tr>
   <tr>
     <td class="tg-c3ow">RepViT-SAM</td>
-    <td class="tg-c3ow"><u>0.066</u></td>
+    <td class="tg-c3ow"><ins>0.066</ins></td>
     <td class="tg-c3ow"><b>37.96</b></td>
   </tr>
 </tbody>

@@ -277,7 +277,8 @@ def main(args):
             checkpoint = torch.hub.load_state_dict_from_url(
                 args.finetune, map_location='cpu', check_hash=True)
         else:
-            checkpoint = utils.load_model(args.finetune, model)
+            print("Loading local checkpoint at {}".format(args.finetune))
+            checkpoint = torch.load(args.finetune, map_location='cpu')
 
         checkpoint_model = checkpoint['model']
         state_dict = model.state_dict()
