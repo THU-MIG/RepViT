@@ -6,6 +6,11 @@ Official PyTorch implementation of **RepViT-SAM**, from the following paper:
 Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
 [[`arXiv`](https://arxiv.org/abs/2312.05760)]
 
+<p align="center">
+  <img src="figures/comparison.png" width=70%> <br>
+  Models are deployed on iPhone 12 with Core ML Tools to get latency.
+</p>
+
 <details>
   <summary>
   <font size="+1">Abstract</font>
