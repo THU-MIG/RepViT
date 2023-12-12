@@ -1,10 +1,10 @@
-# [RepViT-SAM: Towards Real-Time Segmenting Anything]()
+# [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760)
 
 Official PyTorch implementation of **RepViT-SAM**, from the following paper:
 
-[RepViT-SAM: Towards Real-Time Segmenting Anything]().\
+[RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
 Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
-[[`arXiv`]()]
+[[`arXiv`](https://arxiv.org/abs/2312.05760)]
 
 <details>
   <summary>
@@ -39,9 +39,14 @@ Comparison between RepViT-SAM and others in terms of latency. The latency (ms) i
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-c3ow" rowspan="1">Platform</th>
+    <th class="tg-c3ow" rowspan="2">Platform</th>
     <th class="tg-c3ow" colspan="3">Image encoder</th>
-    <th class="tg-c3ow" rowspan="1">Mask decoder</th>
+    <th class="tg-c3ow" rowspan="2">Mask decoder</th>
+  </tr>
+  <tr>
+    <th class="tg-c3ow" rowspan="1">RepViT-SAM</th>
+    <th class="tg-c3ow" rowspan="1">MobileSAM</th>
+    <th class="tg-c3ow" rowspan="1">ViT-B-SAM</th>
   </tr>
 </thead>
 <tbody>
@@ -261,11 +266,11 @@ Thanks for the great implementations!
 
 If our code or models help your work, please cite our paper:
 ```BibTeX
-@misc{wang2023repvit,
-      title={RepViT: Revisiting Mobile CNN From ViT Perspective}, 
-      author={Ao Wang and Hui Chen and Zijia Lin and Hengjun Pu and Guiguang Ding},
+@misc{wang2023repvitsam,
+      title={RepViT-SAM: Towards Real-Time Segmenting Anything}, 
+      author={Ao Wang and Hui Chen and Zijia Lin and Jungong Han and Guiguang Ding},
       year={2023},
-      eprint={2307.09283},
+      eprint={2312.05760},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
