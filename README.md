@@ -1,15 +1,37 @@
+# [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760)
+
 # [RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283)
 
-Official PyTorch implementation of **RepViT**, from the following paper:
 
-[RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283).\
-Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
-[[`arXiv`](https://arxiv.org/abs/2307.09283)]
+Official PyTorch implementation of **RepViT-SAM** and **RepViT**.
+
+<p align="center">
+  <img src="sam/figures/comparison.png" width=80%> <br>
+  Models are deployed on iPhone 12 with Core ML Tools to get latency.
+</p>
 
 <p align="center">
   <img src="figures/latency.png" width=70%> <br>
   Models are trained on ImageNet-1K and deployed on iPhone 12 with Core ML Tools to get latency.
 </p>
+
+
+[RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
+Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
+[[`arXiv`](https://arxiv.org/abs/2312.05760)]
+
+<details>
+  <summary>
+  <font size="+1">Abstract</font>
+  </summary>
+Segment Anything Model (SAM) has shown impressive zero-shot transfer performance for various computer vision tasks recently. However, its heavy computation costs remain daunting for practical applications. MobileSAM proposes to replace the heavyweight image encoder in SAM with TinyViT by employing distillation, which results in a significant reduction in computational requirements. However, its deployment on resource-constrained mobile devices still encounters challenges due to the substantial memory and computational overhead caused by self-attention mechanisms. Recently, RepViT achieves the state-of-the-art performance and latency trade-off on mobile devices by incorporating efficient architectural designs of ViTs into CNNs. Here, to achieve real-time segmenting anything on mobile devices, following, we replace the heavyweight image encoder in SAM with RepViT model, ending up with the RepViT-SAM model. Extensive experiments show that RepViT-SAM can enjoy significantly better zero-shot transfer capability than MobileSAM, along with nearly $10\times$ faster inference speed.
+</details>
+
+<br/>
+
+[RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283).\
+Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
+[[`arXiv`](https://arxiv.org/abs/2307.09283)]
 
 <details>
   <summary>
@@ -17,6 +39,12 @@ Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
   </summary>
 Recently, lightweight Vision Transformers (ViTs) demonstrate superior performance and lower latency compared with lightweight Convolutional Neural Networks (CNNs) on resource-constrained mobile devices. This improvement is usually attributed to the multi-head self-attention module, which enables the model to learn global representations. However, the architectural disparities between lightweight ViTs and lightweight CNNs have not been adequately examined. In this study, we revisit the efficient design of lightweight CNNs and emphasize their potential for mobile devices. We incrementally enhance the mobile-friendliness of a standard lightweight CNN, specifically MobileNetV3, by integrating the efficient architectural choices of lightweight ViTs. This ends up with a new family of pure lightweight CNNs, namely RepViT. Extensive experiments show that RepViT outperforms existing state-of-the-art lightweight ViTs and exhibits favorable latency in various vision tasks. On ImageNet, RepViT achieves over 80\% top-1 accuracy with 1ms latency on an iPhone 12, which is the first time for a lightweight model, to the best of our knowledge. Our largest model, RepViT-M2.3, obtains 83.7\% accuracy with only 2.3ms latency.
 </details>
+
+<br/>
+
+
+
+
 
 <br/>
 
@@ -119,6 +147,15 @@ If our code or models help your work, please cite our paper:
       author={Ao Wang and Hui Chen and Zijia Lin and Hengjun Pu and Guiguang Ding},
       year={2023},
       eprint={2307.09283},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+@misc{wang2023repvitsam,
+      title={RepViT-SAM: Towards Real-Time Segmenting Anything}, 
+      author={Ao Wang and Hui Chen and Zijia Lin and Jungong Han and Guiguang Ding},
+      year={2023},
+      eprint={2312.05760},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
