@@ -162,7 +162,7 @@ def run_export(
         
         img_size = onnx_model.model.image_encoder.img_size
         tmp = torch.ones((1, 3, img_size, img_size), dtype=torch.float)
-        torch.onnx.export(onnx_model.model.image_encoder, tmp, "image_encoder.onnx", opset_version=11,input_names=["image"], output_names=["image_embeddings"])
+        torch.onnx.export(onnx_model.model.image_encoder, tmp, "repvit_sam_image_encoder.onnx", opset_version=11,input_names=["image"], output_names=["image_embeddings"])
 
     if onnxruntime_exists:
         ort_inputs = {k: to_numpy(v) for k, v in dummy_inputs.items()}
