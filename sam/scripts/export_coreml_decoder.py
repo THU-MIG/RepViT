@@ -7,7 +7,7 @@
 import torch
 
 from repvit_sam import sam_model_registry
-from repvit_sam.utils.onnx import SamOnnxModel
+from repvit_sam.utils.coreml import SamCoreMLModel
 
 import argparse
 import warnings
@@ -103,7 +103,7 @@ def run_export(
     print("Loading model...")
     sam = sam_model_registry[model_type](checkpoint=checkpoint)
 
-    onnx_model = SamOnnxModel(
+    onnx_model = SamCoreMLModel(
         model=sam,
         orig_img_size=[1024, 1024],
         return_single_mask=return_single_mask,

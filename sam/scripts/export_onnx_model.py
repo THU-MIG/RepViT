@@ -110,7 +110,6 @@ def run_export(
 
     onnx_model = SamOnnxModel(
         model=sam,
-        orig_img_size=[1500, 2250],
         return_single_mask=return_single_mask,
         use_stability_score=use_stability_score,
         return_extra_metrics=return_extra_metrics,
@@ -135,7 +134,8 @@ def run_export(
         "point_coords": torch.randint(low=0, high=1024, size=(1, 5, 2), dtype=torch.float),
         "point_labels": torch.randint(low=0, high=4, size=(1, 5), dtype=torch.float),
         "mask_input": torch.randn(1, 1, *mask_input_size, dtype=torch.float),
-        "has_mask_input": torch.tensor([1], dtype=torch.float)
+        "has_mask_input": torch.tensor([1], dtype=torch.float),
+        "orig_im_size": torch.tensor([1500, 2250], dtype=torch.float),
     }
 
     # _ = onnx_model(**dummy_inputs)
@@ -159,6 +159,10 @@ def run_export(
                 output_names=output_names,
                 dynamic_axes=dynamic_axes,
             )
+        
+        img_size = onnx_model.model.image_encoder.img_size
+        tmp = torch.ones((1, 3, img_size, img_size), dtype=torch.float)
+        torch.onnx.export(onnx_model.model.image_encoder, tmp, "repvit_sam_image_encoder.onnx", opset_version=11,input_names=["image"], output_names=["image_embeddings"])
 
     if onnxruntime_exists:
         ort_inputs = {k: to_numpy(v) for k, v in dummy_inputs.items()}
