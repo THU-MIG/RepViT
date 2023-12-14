@@ -26,7 +26,6 @@ class SamOnnxModel(nn.Module):
     def __init__(
         self,
         model: Sam,
-        orig_img_size: List,
         return_single_mask: bool,
         use_stability_score: bool = False,
         return_extra_metrics: bool = False,
@@ -39,14 +38,15 @@ class SamOnnxModel(nn.Module):
         self.use_stability_score = use_stability_score
         self.stability_score_offset = 1.0
         self.return_extra_metrics = return_extra_metrics
-        self.orig_img_size = orig_img_size
 
     @staticmethod
     def resize_longest_image_size(
-        input_image_size: List, longest_side: int
-    ) -> List:
-        scale = longest_side / max(input_image_size)
-        transformed_size = [int(floor(scale * each + 0.5)) for each in input_image_size]
+        input_image_size: torch.Tensor, longest_side: int
+    ) -> torch.Tensor:
+        input_image_size = input_image_size.to(torch.float32)
+        scale = longest_side / torch.max(input_image_size)
+        transformed_size = scale * input_image_size
+        transformed_size = torch.floor(transformed_size + 0.5).to(torch.int64)
         return transformed_size
 
     def _embed_points(self, point_coords: torch.Tensor, point_labels: torch.Tensor) -> torch.Tensor:
@@ -74,7 +74,7 @@ class SamOnnxModel(nn.Module):
         ) * self.model.prompt_encoder.no_mask_embed.weight.reshape(1, -1, 1, 1)
         return mask_embedding
 
-    def mask_postprocessing(self, masks: torch.Tensor) -> torch.Tensor:
+    def mask_postprocessing(self, masks: torch.Tensor, orig_im_size: torch.Tensor) -> torch.Tensor:
         masks = F.interpolate(
             masks,
             size=(self.img_size, self.img_size),
@@ -82,10 +82,11 @@ class SamOnnxModel(nn.Module):
             align_corners=False,
         )
 
-        prepadded_size = self.resize_longest_image_size(self.orig_img_size, self.img_size)
+        prepadded_size = self.resize_longest_image_size(orig_im_size, self.img_size).to(torch.int64)
         masks = masks[..., : prepadded_size[0], : prepadded_size[1]]  # type: ignore
 
-        h, w = self.orig_img_size[0], self.orig_img_size[1]
+        orig_im_size = orig_im_size.to(torch.int64)
+        h, w = orig_im_size[0], orig_im_size[1]
         masks = F.interpolate(masks, size=(h, w), mode="bilinear", align_corners=False)
         return masks
 
@@ -111,7 +112,8 @@ class SamOnnxModel(nn.Module):
         point_coords: torch.Tensor,
         point_labels: torch.Tensor,
         mask_input: torch.Tensor,
-        has_mask_input: torch.Tensor
+        has_mask_input: torch.Tensor,
+        orig_im_size: torch.Tensor,
     ):
         sparse_embedding = self._embed_points(point_coords, point_labels)
         dense_embedding = self._embed_masks(mask_input, has_mask_input)
@@ -131,7 +133,7 @@ class SamOnnxModel(nn.Module):
         if self.return_single_mask:
             masks, scores = self.select_masks(masks, scores, point_coords.shape[1])
 
-        upscaled_masks = self.mask_postprocessing(masks)
+        upscaled_masks = self.mask_postprocessing(masks, orig_im_size)
 
         if self.return_extra_metrics:
             stability_scores = calculate_stability_score(
@@ -141,3 +143,4 @@ class SamOnnxModel(nn.Module):
             return upscaled_masks, scores, stability_scores, areas, masks
 
         return upscaled_masks, scores, masks
+

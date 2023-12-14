@@ -296,7 +296,7 @@ class RepViT(nn.Module):
 from timm.models import register_model
 
 @register_model
-def repvit(pretrained=False, num_classes = 1000, distillation=False):
+def repvit(pretrained=False, num_classes = 1000, distillation=False, **kwargs):
     """
     Constructs a MobileNetV3-Large model
     """
