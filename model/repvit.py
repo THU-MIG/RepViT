@@ -246,6 +246,33 @@ class RepViT(nn.Module):
 
 from timm.models import register_model
 
+
+@register_model
+def repvit_m0_6(pretrained=False, num_classes = 1000, distillation=False):
+    """
+    Constructs a MobileNetV3-Large model
+    """
+    cfgs = [
+        [3,   2,  40, 1, 0, 1],
+        [3,   2,  40, 0, 0, 1],
+        [3,   2,  80, 0, 0, 2],
+        [3,   2,  80, 1, 0, 1],
+        [3,   2,  80, 0, 0, 1],
+        [3,   2,  160, 0, 1, 2],
+        [3,   2, 160, 1, 1, 1],
+        [3,   2, 160, 0, 1, 1],
+        [3,   2, 160, 1, 1, 1],
+        [3,   2, 160, 0, 1, 1],
+        [3,   2, 160, 1, 1, 1],
+        [3,   2, 160, 0, 1, 1],
+        [3,   2, 160, 1, 1, 1],
+        [3,   2, 160, 0, 1, 1],
+        [3,   2, 160, 0, 1, 1],
+        [3,   2, 320, 0, 1, 2],
+        [3,   2, 320, 1, 1, 1],
+    ]
+    return RepViT(cfgs, num_classes=num_classes, distillation=distillation)
+
 @register_model
 def repvit_m0_9(pretrained=False, num_classes = 1000, distillation=False):
     """

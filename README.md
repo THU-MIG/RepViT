@@ -50,6 +50,7 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 
 **UPDATES** 🔥
 - 2023/12/11: RepViT-SAM has been released. Please refer to [RepViT-SAM](./sam/README.md).
+- 2023/12/11: RepViT-M0.6 has been released, achieving 74.1% with ~0.6ms latency. Its checkpoint is [here](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_6_distill_300e.pth)
 - 2023/09/28: RepViT-M0.9/1.0/1.1/1.5/2.3 models have been released.
 - 2023/07/27: RepViT models have been integrated into timm. See https://github.com/huggingface/pytorch-image-models/pull/1876.
 
