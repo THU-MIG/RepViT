@@ -18,7 +18,7 @@ Official PyTorch implementation of **RepViT-SAM** and **RepViT**.
 
 [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
 Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
-[[`arXiv`](https://arxiv.org/abs/2312.05760)]
+[[`arXiv`](https://arxiv.org/abs/2312.05760)] [[`Project Page`](https://jameslahm.github.io/repvit-sam)]
 
 <details>
   <summary>
