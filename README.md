@@ -49,6 +49,7 @@ Recently, lightweight Vision Transformers (ViTs) demonstrate superior performanc
 <br/>
 
 **UPDATES** 🔥
+- 2023/12/17: [Grounding-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/main) supports RepViT-SAM with [Grounded-RepViT-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything/tree/main/EfficientSAM#run-grounded-repvit-sam-demo). Thanks!
 - 2023/12/11: RepViT-SAM has been released. Please refer to [RepViT-SAM](./sam/README.md).
 - 2023/12/11: RepViT-M0.6 has been released, achieving 74.1% with ~0.6ms latency. Its checkpoint is [here](https://github.com/THU-MIG/RepViT/releases/download/v1.0/repvit_m0_6_distill_300e.pth)
 - 2023/09/28: RepViT-M0.9/1.0/1.1/1.5/2.3 models have been released.
