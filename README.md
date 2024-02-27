@@ -17,7 +17,7 @@ Official PyTorch implementation of **RepViT-SAM** and **RepViT**.
 
 
 [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
-Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
+Ao Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding\
 [[`arXiv`](https://arxiv.org/abs/2312.05760)] [[`Project Page`](https://jameslahm.github.io/repvit-sam)]
 
 <details>
@@ -30,7 +30,7 @@ Segment Anything Model (SAM) has shown impressive zero-shot transfer performance
 <br/>
 
 [RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283).\
-Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
+Ao Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding\
 [[`arXiv`](https://arxiv.org/abs/2307.09283)]
 
 <details>
@@ -146,7 +146,7 @@ If our code or models help your work, please cite our paper:
 ```BibTeX
 @misc{wang2023repvit,
       title={RepViT: Revisiting Mobile CNN From ViT Perspective}, 
-      author={Ao Wang and Hui Chen and Zijia Lin and Hengjun Pu and Guiguang Ding},
+      author={Ao Wang and Hui Chen and Zijia Lin and Jungong Han and Guiguang Ding},
       year={2023},
       eprint={2307.09283},
       archivePrefix={arXiv},

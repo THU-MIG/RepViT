@@ -3,7 +3,7 @@
 Official PyTorch implementation of **RepViT-SAM**, from the following paper:
 
 [RepViT-SAM: Towards Real-Time Segmenting Anything](https://arxiv.org/abs/2312.05760).\
-Ao Wang, Hui Chen, Zijia Lin, Hengjun Pu, and Guiguang Ding\
+Ao Wang, Hui Chen, Zijia Lin, Jungong Han, and Guiguang Ding\
 [[`arXiv`](https://arxiv.org/abs/2312.05760)]
 
 <p align="center">
