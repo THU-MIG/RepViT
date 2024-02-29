@@ -3,7 +3,7 @@
 # [RepViT: Revisiting  Mobile CNN From ViT Perspective](https://arxiv.org/abs/2307.09283)
 
 
-Official PyTorch implementation of **RepViT-SAM** and **RepViT**.
+Official PyTorch implementation of **RepViT-SAM** and **RepViT**. CVPR 2024.
 
 <p align="center">
   <img src="sam/figures/comparison.png" width=80%> <br>
