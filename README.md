@@ -144,13 +144,12 @@ Thanks for the great implementations!
 
 If our code or models help your work, please cite our paper:
 ```BibTeX
-@misc{wang2023repvit,
-      title={RepViT: Revisiting Mobile CNN From ViT Perspective}, 
-      author={Ao Wang and Hui Chen and Zijia Lin and Jungong Han and Guiguang Ding},
-      year={2023},
-      eprint={2307.09283},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{wang2024repvit,
+  title={Repvit: Revisiting mobile cnn from vit perspective},
+  author={Wang, Ao and Chen, Hui and Lin, Zijia and Han, Jungong and Ding, Guiguang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={15909--15920},
+  year={2024}
 }
 
 @misc{wang2023repvitsam,
